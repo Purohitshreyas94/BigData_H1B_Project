@@ -1,0 +1,76 @@
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2011' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2012' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2013' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2014' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2015' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+SELECT year, case_status, job_title, full_time_position, AVG(prevailing_wage) AS prewage FROM h1b_final WHERE year = '2016' AND full_time_position = 'N' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') GROUP BY year, case_status, job_title, full_time_position ORDER BY prewage DESC LIMIT 5;
+
+
+
+
+--Outputs--
+--year	case_status	job_title	full_time_position	prewage
+--2011	CERTIFIED	INTERNATIONAL MERCHANDISE SALES MANAGER	N	4197440.0
+--2011	CERTIFIED	AUSTRALIAN OFFSHORE DRILLING REGULATION SPECIALIST	N416000.0
+--2011	CERTIFIED	OCCUPATIONAL SAFETY AND HEALTH EXPERT	N	416000.0
+--2011	CERTIFIED	LECTURER IN ARCHITECTURE	N	405600.0
+--2011	CERTIFIED	PHYSICIAN (INTERNAL MEDICINE, HEMATOLOGY AND ONCOL	N306342.0
+
+
+--year	case_status	job_title	full_time_position	prewage
+--2012	CERTIFIED	TEST ANALYST - US	N	9.215232E7
+--2012	CERTIFIED	OCCUPATIONAL HEALTH AND SAFETY EXPERT	N	416000.0
+--2012	CERTIFIED	OCCUPATIONAL SAFETY AND HEALTH SPECIALIST	N	416000.0
+--2012	CERTIFIED	TEACHING ARTIST	N	260000.0
+--2012	CERTIFIED	PART TIME FACULTY/NON INSTRUCTIONAL	N	249995.0
+
+
+--year	case_status	job_title	full_time_position	prewage
+--2013	CERTIFIED	NON-INTERVENTIONAL CARDIOLOGIST	N	392891.0
+--2013	CERTIFIED	CRITICAL CARE: INTENSIVIST	N	296254.0
+--2013	CERTIFIED-WITHDRAWN	PART-TIME FACULTY	N	293800.0
+--2013	CERTIFIED	NEURO-INTENSIVIST	N	290576.0
+--2013	CERTIFIED	PHYSICIAN (HEMATOLOGY AND ONCOLOGY)	N	251284.0
+
+
+--year	case_status	job_title	full_time_position	prewage
+--2014	CERTIFIED	VISITING ASSOCIATE PROFESSOR	N	429520.0
+--2014	CERTIFIED	ADJUNCT ASSOCIATE MEDICAL PROFESSOR (BASIC SCIENCE	N394825.0
+--2014	CERTIFIED	ADJUNCT ASSOCIATE  PROFESSOR	N	250640.0
+--2014	CERTIFIED	CLINICAL ASSOCIATE PROFESSOR (PSYCHIATRY)	N	250473.0
+--2014	CERTIFIED	ASSOCIATE DERMATOLOGIST	N	247603.0
+
+
+--year	case_status	job_title	full_time_position	prewage
+--2015	CERTIFIED-WITHDRAWN	CARDIOLOGIST	N	360006.0
+--2015	CERTIFIED	VASCULAR SURGEON & SPECIALITY MEDICINE CONSULTANT	N324688.0
+--2015	CERTIFIED	PSYCHIATRIST II	N	291200.0
+--2015	CERTIFIED	ASSISTANT PROFESSOR ADJUNCT OF ARCHITECTURE	N	284377.0
+--2015	CERTIFIED	ADJUNCT ASSOCIATE  PROFESSOR	N	257920.0
+
+
+--year	case_status	job_title	full_time_position	prewage
+--2016	CERTIFIED	ASSISTANT PROFESSOR OF COMPUTER AND INFORMATION SCIENCESN	70000.0
+--2016	CERTIFIED	SOFTWARE DEVELOPER, HIGH PERFORMANCE COMPUTING APP DEVELOPER	N	70000.0
+--2016	CERTIFIED	VP, DEVELOPMENT AND PUBLIC AFFAIRS	N	70000.0
+--2016	CERTIFIED	DEMAND GENERATION MANAGER	N	70000.0
+--2016	CERTIFIED	IMMIGRATION ATTORNEY	N	70000.0
+
+
