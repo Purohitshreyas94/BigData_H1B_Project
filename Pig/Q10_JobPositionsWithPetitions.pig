@@ -44,7 +44,7 @@ success = FOREACH total GENERATE $0,$1,(float)(($2)*100)/(float)$1;
 
 successrate = FILTER success BY $1>=1000 AND $2>70;	
 
-jobpositionssuccessrate = LIMIT (ORDER successrate BY $2 DESC)5;
+jobpositionssuccessrate = ORDER successrate BY $2 DESC ;
 
 
 --STORE jobpositionssuccessrate INTO '/H1B_Project/Pig/Q10_JobPositionsWithTheNumberOfPetitions';

@@ -1,3 +1,30 @@
 
 
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q1A_DataEngineerJob.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q1B_Top5JobTitlesAvgGrowthYear.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q2A_USWorksiteDataEngineerJob.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q2B_Top5LocationsInUSGotCertifiedVisa.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q3_IndustryMostDataScientistCertified.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q4_Top5EmployerMostPetitions.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q5A_Top10JobPosistionsYear.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q5B_Top10CertifiedJobPosistionsYear.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q6_CountOfTotalApplications.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q7_NumberOfApplications.pig
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q8A_FullTimeAveragePrevailingWage.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q8B_PartTimeAveragePrevailingWage.pig 
+
+pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q9_EmployersSuccessRate.pig
+
+pig  /home/hduser/Desktop/H1B-VisaProject/Pig/Q10_JobPositionsSucessRate.pig
 

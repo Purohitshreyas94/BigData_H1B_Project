@@ -1,5 +1,7 @@
 
-h1b = LOAD '/user/hive/warehouse/h1bproject.db/h1b_final' USING PigStorage('\t') AS 
+
+--h1b = LOAD '/user/hive/warehouse/h1bproject.db/h1b_final' USING PigStorage('\t') AS 
+h1b = LOAD '/home/hduser/h1b/h1b_final' USING PigStorage() AS 
 (s_no,case_status,employer_name,soc_name,job_title:chararray,full_time_position,prevailing_wage:long,year:chararray,worksite:chararray,longitute:double,latitute:double);
 
 

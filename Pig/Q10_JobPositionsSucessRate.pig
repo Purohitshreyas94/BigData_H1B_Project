@@ -42,11 +42,10 @@ finalbag = FOREACH joined GENERATE $0,$1 as petitions, (FLOAT)(($3*100)/$1) AS s
 											
 filtersuccessrate = FILTER finalbag BY $1 >= 1000 AND $2 > 70;
 
-jobsuccessrate= LIMIT (ORDER filtersuccessrate BY $2 DESC)5;
+jobsuccessrate=  ORDER filtersuccessrate BY $2 DESC ;
 
 
 --STORE jobsuccessrate INTO '/H1B_Project/Pig/Q10JobPositionsSuccessRate';
-
 
 DUMP jobsuccessrate;
 

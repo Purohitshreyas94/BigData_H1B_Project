@@ -1,7 +1,10 @@
 
-h1b = LOAD '/user/hive/warehouse/h1bproject.db/h1b_final' USING PigStorage() AS 
-(s_no,case_status,employer_name,soc_name,job_title:chararray,full_time_position,prevailing_wage:long,year:chararray,
-worksite:chararray,longitute:double,latitute:double);
+--h1b = LOAD '/user/hive/warehouse/h1bproject.db/h1b_final' USING PigStorage() AS 
+--(s_no,case_status,employer_name,soc_name,job_title:chararray,full_time_position,prevailing_wage:long,year:chararray,
+--worksite:chararray,longitute:double,latitute:double);
+
+h1b = LOAD '/home/hduser/h1b/h1b_final' USING PigStorage() AS 
+(s_no,case_status:chararray,employer_name:chararray,soc_name:chararray,job_title:chararray,full_time_position,prevailing_wage:long,year:chararray,worksite:chararray,longitute:double,latitute:double);
 
 
 
@@ -40,7 +43,7 @@ totalapplications = FOREACH joined GENERATE FLATTEN($0), (FLOAT)($2*100)/$4, $2;
 --STORE totalapplications INTO '/H1B_Project/Pig/Q6CountOfTotalApplications';
 
 
-DUMP totalapplications;
+--DUMP totalapplications;
 
 --(2011,DENIED,8.119476,29130)
 --(2011,CERTIFIED,85.83175,307936)
@@ -67,6 +70,8 @@ DUMP totalapplications;
 --(2016,CERTIFIED-WITHDRAWN,7.269494,47092)
 --(2016,DENIED,1.4163257,9175)
 
+filterfinal = FILTER totalapplications BY $0 == '$whichyear';
 
+DUMP filterfinal;
 
 
