@@ -8,20 +8,20 @@ show_menu()
     RED_TEXT=`echo "\033[31m"`
     ENTER_LINE=`echo "\033[33m"`
         echo -e "${MENU}**********************ANALYSIS AND SUMMERIZATION OF H1B APPLICANTS***********************${NORMAL}"
-    echo -e "${MENU}${NUMBER} 1A) ${MENU} Is the number of petitions with Data Engineer job title increasing over time?(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 1B) ${MENU} Find top 5 job titles who are having highest growth in applications.(MR) ${NORMAL}"
-    echo -e "${MENU}${NUMBER} 2A) ${MENU} Which part of the US has the most Data Engineer jobs for each year?(HIVE)(MR) ${NORMAL}"
-    echo -e "${MENU}${NUMBER} 2B) ${MENU} Find top 5 locations in the US who have got certified visa for each year.(HIVE)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 3) ${MENU} Which industry has the most number of Data Scientist positions?(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 4) ${MENU} Which top 5 employers file the most petitions each year?(MR) ${NORMAL}"
-    echo -e "${MENU}${NUMBER} 5A) ${MENU} Find the most popular top 10 job positions for H1B visa applications for each year?(HIVE)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 5B) ${MENU} Find the most popular top 10 job positions for Certified H1B visa applications for each year?(HIVE)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 6) ${MENU} Find the percentage and the count of each case status on total applications for each year. Create a graph depicting the pattern of All the cases over the period of time.(PIG)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 7) ${MENU} Create a bar graph to depict the number of applications for each year(PIG)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 8) ${MENU}Find the average Prevailing Wage for each Job for each Year (take part time and full time separate) arrange output in descending order(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 9) ${MENU}Which are the employers who have highest success rate in petitions more than 70%and total petions filed more than 1000?(PIG)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 10) ${MENU}Which are the top 10 job positions which have the  success rate more than 70% in petitions and total petitions filed more than 1000? (PIG)(MR)${NORMAL}"
-    echo -e "${MENU}${NUMBER} 11) ${MENU}Export result for option no 12 to MySQL database.(Sqoop,Hive)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 1A) ${MENU} Is the number of petitions with Data Engineer job title increasing over time?(MR)(PIG)(HIVE)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 1B) ${MENU} Find top 5 job titles who are having highest growth in applications.(PIG)(MR)(HIVE) ${NORMAL}"
+    echo -e "${MENU}${NUMBER} 2A) ${MENU} Which part of the US has the most Data Engineer jobs for each year?(HIVE)(MR)(PIG) ${NORMAL}"
+    echo -e "${MENU}${NUMBER} 2B) ${MENU} Find top 5 locations in the US who have got certified visa for each year.(HIVE)(MR)(PIG)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 3) ${MENU} Which industry has the most number of Data Scientist positions?(MR)${NORMAL}(HIVE)(PIG)(MR)"
+    echo -e "${MENU}${NUMBER} 4) ${MENU} Which top 5 employers file the most petitions each year?(MR) ${NORMAL}(MR)(HIVE)(PIG)"
+    echo -e "${MENU}${NUMBER} 5A) ${MENU} Find the most popular top 10 job positions for H1B visa applications for each year?(HIVE)(MR)(PIG)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 5B) ${MENU} Find the most popular top 10 job positions for Certified H1B visa applications for each year?(HIVE)(MR)(PIG)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 6) ${MENU} Find the percentage and the count of each case status on total applications for each year. Create a graph depicting the pattern of All the cases over the period of time.(PIG)(MR)(HIVE)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 7) ${MENU} Create a bar graph to depict the number of applications for each year(MR)(PIG)(HIVE)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 8) ${MENU}Find the average Prevailing Wage for each Job for each Year (take part time and full time separate) arrange output in descending order(MR)(HIVE)(PIG)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 9) ${MENU}Which are the employers who have highest success rate in petitions more than 70%and total petions filed more than 1000?(PIG)(MR)(HIVE)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 10) ${MENU}Which are the top 10 job positions which have the  success rate more than 70% in petitions and total petitions filed more than 1000? (PIG)(MR)(HIVE)${NORMAL}"
+    echo -e "${MENU}${NUMBER} 11) ${MENU}Export result for option no 12 to MySQL database.(SQOOP,MYSQL)${NORMAL}"
     echo -e "${MENU}*********************************************${NORMAL}"
     echo -e "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${NORMAL}"
     read opt
@@ -54,9 +54,8 @@ while [ opt != '' ]
 
 	1B) clear;
         option_picked "1B) Find top 5 job titles who are having highest growth in applications. ";
-		hadoop fs -rm -r /H1B_Project/MapReduce/Output/Q1BTop5JobHighestGrowth
-              hadoop jar h1bproject.jar Q1B_Top5JobHighestGrowth /user/hive/warehouse/h1bproject.db/h1b_final /H1B_Project/MapReduce/Output/Q1BTop5JobHighestGrowth
-               hadoop fs -cat /H1B_Project/MapReduce/Output/Q1BTop5JobHighestGrowth/p*
+		
+               pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q1B_Top5JobTitlesAvgGrowthYear.pig;
                
         show_menu;
         ;;
@@ -115,7 +114,10 @@ while [ opt != '' ]
 	6) clear;
        option_picked "6) Find the percentage and the count of each case status on total applications for each year. Create a graph depicting the pattern of All the cases over the period of time.";
           
-              pig /home/hduser/Desktop/H1B-VisaProject/Pig/Q6_CountOfTotalApplications.pig;
+               echo -e "Enter the year (2011,2012,2013,2014,2015,2016)"
+		read var
+               echo -e "No of Total Applications For ${var}"
+             pig -x local -p whichyear=${var} -f /home/hduser/Desktop/H1B-VisaProject/Pig/Q6_CountOfTotalApplications.pig;
 		
         show_menu;
         ;;  
@@ -123,8 +125,13 @@ while [ opt != '' ]
 	7) clear;
 		
         option_picked "7) Create a bar graph to depict the number of applications for each year";
-			
-                    pig /home/hduser/Desktop/H1B-VisaProject/Pig/Q7_NumberOfApplications.pig;
+	         echo -e "Enter the year (2011,2012,2013,2014,2015,2016,ALL)"
+                  read var
+
+            hadoop fs -rm -r /H1B_Project/MapReduce/Output/Q7NoOfApplication/output
+              hadoop jar h1bproject.jar Q7_NoOfApplicationEachYear  /user/hive/warehouse/h1bproject.db/h1b_final /H1B_Project/MapReduce/Output/Q7NoOfApplication/output $var;
+               hadoop fs -cat /H1B_Project/MapReduce/Output/Q7NoOfApplication/output/p*	
+                    
 		
         show_menu;
         ;;           
@@ -159,7 +166,7 @@ while [ opt != '' ]
 
 	9) clear;
 		option_picked "9) Which are the employers who have highest success rate in petitions more than 70%and total petions filed more than 1000?"
-		 pig /home/hduser/Desktop/H1B-VisaProject/Pig/Q9_EmployersSuccessRate.pig;
+		pig -x local /home/hduser/Desktop/H1B-VisaProject/Pig/Q9_EmployersSuccessRate.pig;
         show_menu;
         ;;
 
@@ -172,7 +179,7 @@ while [ opt != '' ]
        11) clear;
 		option_picked "11) Export Result Of option no 10 to MySQL Database."
 
-                 mysql -u root -p'root';
+                bash /home/hduser/Desktop/H1B-VisaProject/Sqoop/Q11_ExportQ10AnsToMySqlDBUsingSqoop.sh
                 
         show_menu;
         ;;
